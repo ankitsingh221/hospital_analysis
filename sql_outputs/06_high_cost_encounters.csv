@@ -1,0 +1,21 @@
+encounter_id,patient_id,department,diagnosis,hospital_charges
+ENC005516,,Oncology,Diabetes,23574.65
+ENC021886,,Icu,Heart Disease,23484.82
+ENC008231,,Cardiology,Kidney Disease,23269.12
+ENC015184,,Icu,Stroke,23051.22
+ENC011491,,Neurology,Infection,23005.9
+ENC017915,,Oncology,Stroke,22884.9
+ENC000207,,Cardiology,Fracture,22692.84
+ENC002544,,Emergency,Cancer,22687.46
+ENC020904,,Neurology,Hypertension,22606.32
+ENC012610,,General Medicine,Asthma,22587.44
+ENC020114,,Orthopedics,Infection,22580.81
+ENC009522,,Oncology,Kidney Disease,22572.43
+ENC015645,,Orthopedics,Stroke,22551.73
+ENC009024,,Pediatrics,Heart Disease,22442.67
+ENC007890,,Icu,Kidney Disease,22292.8
+ENC025886,,Icu,Hypertension,22252.84
+ENC021839,,Radiology,Infection,22251.6
+ENC012114,,Neurology,Stroke,22231.74
+ENC026227,,Radiology,Infection,22099.61
+ENC023211,,General Medicine,Infection,22080.81

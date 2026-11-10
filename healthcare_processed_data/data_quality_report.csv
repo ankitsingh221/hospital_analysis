@@ -1,0 +1,9 @@
+dataset,stage,total_records,total_columns,missing_values,duplicate_rows
+patients,before_cleaning,974,8,96,0
+patients,after_cleaning,970,10,159,0
+payers,before_cleaning,10,5,0,0
+payers,after_cleaning,10,6,0,0
+encounters,before_cleaning,27891,13,3896,0
+encounters,after_cleaning,27809,19,62285,0
+procedures,before_cleaning,47701,8,4767,0
+procedures,after_cleaning,47558,12,56274,0

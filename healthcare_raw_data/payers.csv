@@ -1,0 +1,11 @@
+payer_id,payer_name,payer_type,coverage_rate,network_type
+PAY001,BlueCross Health,Private,0.82,PPO
+PAY002,United Healthcare,Private,0.85,HMO
+PAY003,Aetna Insurance,Private,0.78,PPO
+PAY004,Cigna Healthcare,Private,0.8,PPO
+PAY005,Medicare,Government,0.9,Public
+PAY006,Medicaid,Government,0.95,Public
+PAY007,Humana,Private,0.83,HMO
+PAY008,Kaiser Permanente,Private,0.88,HMO
+PAY009,Molina Healthcare,Government,0.91,Public
+PAY010,Anthem Insurance,Private,0.79,PPO

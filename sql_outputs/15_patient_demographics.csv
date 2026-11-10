@@ -1,0 +1,15 @@
+gender,age_group,total_patients
+Female,Above 65,174
+Male,Above 65,164
+Female,19-35,120
+Male,51-65,103
+Male,36-50,99
+Female,51-65,92
+Male,19-35,88
+Female,36-50,77
+Female,,15
+Male,,14
+,36-50,7
+,Above 65,7
+,19-35,5
+,51-65,5

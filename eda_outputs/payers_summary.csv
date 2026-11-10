@@ -1,0 +1,7 @@
+,count,unique,top,freq,mean,std,min,25%,50%,75%,max
+payer_id,10,10,PAY001,1,,,,,,,
+payer_name,10,10,Bluecross Health,1,,,,,,,
+payer_type,10,2,Private,7,,,,,,,
+coverage_rate,10.0,,,,0.8510000000000002,0.0570477382938574,0.78,0.805,0.84,0.895,0.95
+network_type,10,3,Ppo,4,,,,,,,
+coverage_percentage,10.0,,,,85.1,5.704773829385741,78.0,80.5,84.0,89.5,95.0
