@@ -28,9 +28,9 @@ import numpy as np
 import pandas as pd
 
 
-# ============================================================
+
 # 1. CONFIGURATION
-# ============================================================
+
 
 SEED = 42
 
@@ -46,9 +46,7 @@ NUM_PAYERS = 10
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
-# ============================================================
-# 2. HELPER FUNCTIONS
-# ============================================================
+# helper functions
 
 def inject_missing(df, columns, percentage=0.02):
     """Introduce missing values into selected columns."""
@@ -165,9 +163,9 @@ def print_quality_summary(name, df, id_column):
     )
 
 
-# ============================================================
+
 # 3. PAYERS DATASET
-# ============================================================
+
 
 print("\nGenerating payer dataset...")
 
@@ -226,9 +224,9 @@ payers = inject_inconsistent_text(
 save_dataset(payers, "payers.csv")
 
 
-# ============================================================
+
 # 4. PATIENTS DATASET
-# ============================================================
+
 
 print("\nGenerating patient dataset...")
 
@@ -378,9 +376,8 @@ patients.loc[
 save_dataset(patients, "patients.csv")
 
 
-# ============================================================
+
 # 5. ENCOUNTERS DATASET
-# ============================================================
 
 print("\nGenerating encounter dataset...")
 
@@ -450,9 +447,9 @@ diagnoses = rng.choice(
 )
 
 
-# ------------------------------------------------------------
+
 # Length of stay based on admission type
-# ------------------------------------------------------------
+
 
 los = []
 
@@ -487,9 +484,9 @@ discharge_dates = (
 )
 
 
-# ------------------------------------------------------------
+
 # Discharge status
-# ------------------------------------------------------------
+
 
 discharge_status = rng.choice(
     [
@@ -504,9 +501,9 @@ discharge_status = rng.choice(
 )
 
 
-# ------------------------------------------------------------
+
 # Payer assignments
-# ------------------------------------------------------------
+
 
 payer_assignments = rng.choice(
     payers["payer_id"].values,
@@ -526,9 +523,8 @@ coverage = np.array([
 ])
 
 
-# ------------------------------------------------------------
 # Hospital charges
-# ------------------------------------------------------------
+
 
 base_cost = np.select(
     [
@@ -565,9 +561,9 @@ hospital_charges = np.maximum(
 ).round(2)
 
 
-# ------------------------------------------------------------
+
 # Insurance coverage
-# ------------------------------------------------------------
+
 
 amount_covered = (
     hospital_charges
@@ -584,9 +580,9 @@ patient_responsibility = (
 ).round(2)
 
 
-# ------------------------------------------------------------
+
 # Create encounters dataframe
-# ------------------------------------------------------------
+
 
 encounters = pd.DataFrame({
 
@@ -619,9 +615,9 @@ encounters = pd.DataFrame({
 })
 
 
-# ------------------------------------------------------------
+
 # Introduce missing values
-# ------------------------------------------------------------
+
 
 encounters = inject_missing(
     encounters,
@@ -637,9 +633,9 @@ encounters = inject_missing(
 )
 
 
-# ------------------------------------------------------------
+
 # Inconsistent categories
-# ------------------------------------------------------------
+
 
 encounters = inject_inconsistent_text(
     encounters,
@@ -657,9 +653,9 @@ encounters = inject_inconsistent_text(
 )
 
 
-# ------------------------------------------------------------
+
 # Duplicate encounter IDs
-# ------------------------------------------------------------
+
 
 encounters = inject_duplicate_ids(
     encounters,
@@ -668,9 +664,9 @@ encounters = inject_duplicate_ids(
 )
 
 
-# ------------------------------------------------------------
+
 # Invalid financial values
-# ------------------------------------------------------------
+
 
 bad_cost_indices = rng.choice(
     encounters.index,
@@ -689,9 +685,9 @@ encounters.loc[
 ] = 999999
 
 
-# ------------------------------------------------------------
+
 # Invalid length of stay
-# ------------------------------------------------------------
+
 
 bad_los_indices = rng.choice(
     encounters.index,
@@ -705,11 +701,10 @@ encounters.loc[
 ] = -2
 
 
-# ------------------------------------------------------------
 # Missing and malformed dates
 # IMPORTANT: Convert to object before inserting strings.
 # This prevents the Pandas datetime assignment error.
-# ------------------------------------------------------------
+
 
 encounters = inject_missing(
     encounters,
@@ -749,9 +744,9 @@ for idx in malformed_date_indices[15:]:
     ] = "not_available"
 
 
-# ------------------------------------------------------------
+
 # Invalid foreign keys
-# ------------------------------------------------------------
+
 
 bad_fk_indices = rng.choice(
     encounters.index,
@@ -773,9 +768,9 @@ encounters.loc[
 save_dataset(encounters, "encounters.csv")
 
 
-# ============================================================
+
 # 6. PROCEDURES DATASET
-# ============================================================
+
 
 print("\nGenerating procedure dataset...")
 
@@ -785,9 +780,9 @@ procedure_ids = [
 ]
 
 
-# ------------------------------------------------------------
+
 # Distribute exactly 47,701 procedures across encounters
-# ------------------------------------------------------------
+
 
 procedure_counts = rng.poisson(
     NUM_PROCEDURES / NUM_ENCOUNTERS,
@@ -832,9 +827,8 @@ procedure_encounter_ids = np.repeat(
 rng.shuffle(procedure_encounter_ids)
 
 
-# ------------------------------------------------------------
 # Procedure catalog
-# ------------------------------------------------------------
+
 
 procedure_catalog = {
 
@@ -874,9 +868,9 @@ selected_procedures = rng.choice(
 )
 
 
-# ------------------------------------------------------------
+
 # Generate procedure costs
-# ------------------------------------------------------------
+
 
 procedure_costs = []
 
@@ -891,9 +885,9 @@ for procedure in selected_procedures:
     )
 
 
-# ------------------------------------------------------------
+
 # Create procedures dataframe
-# ------------------------------------------------------------
+
 
 procedures = pd.DataFrame({
 
@@ -945,9 +939,9 @@ procedures = pd.DataFrame({
 })
 
 
-# ------------------------------------------------------------
+
 # Missing values
-# ------------------------------------------------------------
+
 
 procedures = inject_missing(
     procedures,
@@ -962,9 +956,9 @@ procedures = inject_missing(
 )
 
 
-# ------------------------------------------------------------
+
 # Inconsistent text
-# ------------------------------------------------------------
+
 
 procedures = inject_inconsistent_text(
     procedures,
@@ -977,9 +971,9 @@ procedures = inject_inconsistent_text(
 )
 
 
-# ------------------------------------------------------------
+
 # Duplicate procedure IDs
-# ------------------------------------------------------------
+
 
 procedures = inject_duplicate_ids(
     procedures,
@@ -988,9 +982,9 @@ procedures = inject_duplicate_ids(
 )
 
 
-# ------------------------------------------------------------
+
 # Invalid procedure costs
-# ------------------------------------------------------------
+
 
 bad_indices = rng.choice(
     procedures.index,
@@ -1009,9 +1003,9 @@ procedures.loc[
 ] = 50000
 
 
-# ------------------------------------------------------------
+
 # Invalid quantity
-# ------------------------------------------------------------
+
 
 invalid_quantity_indices = rng.choice(
     procedures.index,
@@ -1025,9 +1019,9 @@ procedures.loc[
 ] = -1
 
 
-# ------------------------------------------------------------
+
 # Invalid encounter foreign keys
-# ------------------------------------------------------------
+
 
 bad_fk = rng.choice(
     procedures.index,
@@ -1041,9 +1035,9 @@ procedures.loc[
 ] = "ENC999999"
 
 
-# ------------------------------------------------------------
+
 # Invalid future procedure dates
-# ------------------------------------------------------------
+
 
 future_indices = rng.choice(
     procedures.index,
@@ -1060,9 +1054,9 @@ procedures.loc[
 save_dataset(procedures, "procedures.csv")
 
 
-# ============================================================
+
 # 7. FINAL DATA QUALITY SUMMARY
-# ============================================================
+
 
 print("\n\n")
 print("#" * 65)
@@ -1090,9 +1084,9 @@ for name, (df, id_column) in datasets.items():
     )
 
 
-# ============================================================
+
 # 8. VERIFY TOTAL RECORD COUNTS
-# ============================================================
+
 
 print("\n" + "=" * 65)
 print("RECORD COUNT VERIFICATION")

@@ -515,9 +515,9 @@ payers_clean.to_csv(
 )
 
 
-# ============================================================
+
 # 4. GENERATE DATA QUALITY REPORT
-# ============================================================
+
 
 quality_df = pd.DataFrame(quality_report)
 
@@ -527,9 +527,9 @@ quality_df.to_csv(
 )
 
 
-# ============================================================
+
 # 5. GENERATE FINAL SUMMARY
-# ============================================================
+
 
 print("\n" + "=" * 60)
 print("DATA CLEANING COMPLETED SUCCESSFULLY")
