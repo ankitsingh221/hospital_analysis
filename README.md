@@ -349,18 +349,4 @@ The pipeline runs end-to-end, but the currently committed outputs reflect a few 
 
 ---
 
-## Future Work
 
-- Fix the ID normalization so patient, payer, and encounter foreign keys survive cleaning
-- Align column names across generation, feature engineering, and SQL queries
-- Add `requirements.txt` and a small test suite
-- Add a Power BI or Python dashboard consuming `healthcare.db`
-- Externalize configuration into a config file or CLI arguments
-
----
-
-## Repository
-
-- Remote: `https://github.com/ankitsingh221/hospital_analysis.git`
-- Branch: `main`
-- Generated outputs are already committed, so the analysis stages can be inspected without regenerating the data.
